@@ -11,6 +11,7 @@ public class TCPClientApp {
         try {
             Socket s = new Socket(IP, PORT);
             print("Connection stablished to:" + IP + ":" + PORT);
+            print("--- Write 'exit' to quit.");
             ObjectOutputStream oo = new ObjectOutputStream(s.getOutputStream());
             ObjectInputStream oi = new ObjectInputStream(s.getInputStream());
             Scanner keyboard = new Scanner(System.in);
@@ -22,10 +23,10 @@ public class TCPClientApp {
                 oo.writeObject(sendObject);
                 print("Sended: " + sendObject);            
                 responseObject = (String) oi.readObject();
-                print("Received: " + responseObject);
                 if (responseObject.equals("exit")) {
                     break;
                 }
+                print("Received: " + responseObject);                
             }
             
             oo.close();
